@@ -8,6 +8,7 @@ import {
 import { Divider } from "@mui/material";
 import Status from "./Status";
 import { MdClose, MdDone } from "react-icons/md";
+import { constructProxyImageUrl } from "../../utils/constructProxyImageUrl";
 
 function ProductViewModal({ open, setOpen, product, isAvailable }) {
   const {
@@ -36,7 +37,7 @@ function ProductViewModal({ open, setOpen, product, isAvailable }) {
             >
               {image && (
                 <div className="flex justify-center aspect-3/2 pt-10">
-                  <img src={image} alt={productName} />
+                  <img src={constructProxyImageUrl(image)} alt={productName} />
                 </div>
               )}
 
