@@ -12,6 +12,7 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loader, setLoader] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -25,6 +26,8 @@ const Register = () => {
   const registerHandler = async (data) => {
     dispatch(registerNewUser(data, toast, reset, navigate, setLoader));
   };
+
+  const handleShowPassword = () => setShowPassword((prev) => !prev);
 
   return (
     <div className="min-h-[calc(100vh-64px)] flex justify-center items-center">
@@ -67,11 +70,13 @@ const Register = () => {
             required
             id="password"
             min={6}
-            type="password"
+            type={showPassword ? "text" : "password"}
             message="*Password is required"
             placeholder="Enter your password"
             register={register}
             errors={errors}
+            handleShowPassword={handleShowPassword}
+            showPassword={showPassword}
           />
         </div>
 

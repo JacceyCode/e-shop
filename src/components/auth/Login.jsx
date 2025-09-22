@@ -12,6 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loader, setLoader] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -25,6 +26,8 @@ const Login = () => {
   const loginHandler = async (data) => {
     dispatch(authenticateSignInUser(data, toast, reset, navigate, setLoader));
   };
+
+  const handleShowPassword = () => setShowPassword((prev) => !prev);
 
   return (
     <div className="min-h-[calc(100vh-64px)] flex justify-center items-center">
@@ -55,11 +58,13 @@ const Login = () => {
             label="Password"
             required
             id="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             message="*Password is required"
             placeholder="Enter your password"
             register={register}
             errors={errors}
+            handleShowPassword={handleShowPassword}
+            showPassword={showPassword}
           />
         </div>
 
